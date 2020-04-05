@@ -5,38 +5,57 @@ import countryFlagColors from "country-flag-colors";
 import countryJs from "country-js";
 import CirclePack from 'circlepack-chart';
 import swal from 'sweetalert2'
-import d3 from 'd3'
-const color = d3.scaleOrdinal(d3.schemePaired);
+import {
+    scaleOrdinal,
+    schemePaired
+} from 'd3'
+console.log('scaleOrdinal: ', scaleOrdinal)
+console.log('schemePaired: ', schemePaired)
+const color = scaleOrdinal(schemePaired);
 
 /*==========Functions Start==========*/
 async function configurePackedMap() {
     var myChart = CirclePack();
     myChart
-        .data((getData()))
+        .data(getData())
+        .sort((a, b) => a.value - b.value) // sort ascending by size
         .color(d => color(d.name))
         .showLabels(false)
         .excludeRoot(true)
         .tooltipContent((d, node) => `Size: <i>${node.value}</i>`)
         (document.getElementById('start'));
 }
-async function getData(name = 'root', probOfChildren = 1) {
+async function getData() {
     console.log('start: ', document.getElementById('start'))
-    const CHILDREN_PROB_DECAY = 0.15; // per level
-    const MAX_CHILDREN = 5;
-    const MAX_VALUE = 20;
-    if (Math.random() < probOfChildren) {
-        console.log('probOfChildren: ', probOfChildren)
-        return {
-            name,
-            children: [...Array(Math.round(Math.random() * MAX_CHILDREN))]
-                .map((_, i) => getData(i, probOfChildren - CHILDREN_PROB_DECAY))
-        }
-    } else {
-        return {
-            name,
-            value: Math.round(Math.random() * MAX_VALUE)
-        }
-    }
+    return {
+        name: 'main',
+        color: 'magenta',
+        children: [{
+            name: 'a',
+            color: 'yellow',
+            size: Math.random() * 100
+        }, {
+            name: 'b',
+            color: 'red',
+            children: [{
+                name: 'ba',
+                color: 'orange',
+                size: Math.random() * 100
+            }, {
+                name: 'bb',
+                color: 'blue',
+                children: [{
+                    name: 'bba',
+                    color: 'green',
+                    size: 1
+                }, {
+                    name: 'bbb',
+                    color: 'pink',
+                    size: Math.random() * 100
+                }]
+            }]
+        }]
+    };
 }
 
 function getCountryCodes() {
@@ -52,7 +71,12 @@ function getCountryCodes() {
         colors = colors.map((color) => {
             return color.replace('#', '0x')
         })
-        return { "name": country, "colors": colors, "geo": geo, "code": code }
+        return {
+            "name": country,
+            "colors": colors,
+            "geo": geo,
+            "code": code
+        }
     })
     countries = countries.filter((country) => {
         return country.geo !== null

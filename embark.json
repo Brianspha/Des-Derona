@@ -1,0 +1,34 @@
+{
+    "contracts": ["contracts/**"],
+    "app": {
+        "js/main.js": ["app/js/main.js"],
+        "js/game.js": ["app/js/game.js"],
+        "index.html": "app/index.html",
+        "game.html": "app/game.html",
+        "images/": ["app/images/**"],
+        "css/game.css": ["app/css/game.css"],
+        "css/main.css": ["app/css/main.css"]
+    },
+    "buildDir": "dist/",
+    "generationDir": "embarkArtifacts/",
+    "config": "config/",
+    "versions": {
+        "solc": "0.5.10"
+    },
+    "options": {
+        "solc": {
+            "optimize": true,
+            "optimize-runs": 1000
+        }
+    },
+    "plugins": {
+        "embark-remix": {
+            "readOnly": false,
+            "remixIde": {
+                "protocol": "http",
+                "host": "localhost",
+                "port": 8088
+            }
+        }
+    }
+}

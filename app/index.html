@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>HangCrypt</title>
+	<link rel="stylesheet" href="css/main.css">
+	
+</head>
+
+<body>
+	<!-- MENU SCREEN -->
+	<div class="screen menu">
+		<h1 class="title">Des DeRona</h1>
+		<p><button id="challenge-button" data-screen="start">Start</button></p>
+		<p><button id="leader-button" data-screen="leader">Leader Board</button></p>
+		<p><button id="leader-button" data-screen="credits">CREDITS</button></p>
+	</div>
+	<!-- INSTRUCTION SCREEN -->
+	<div class="screen leader">
+		<h1 class="title">Leader board</h1>
+		
+		<p class="footer">
+			<button data-screen="menu">BACK TO MENU</button>
+		</p>
+	</div>
+
+	<!--Challenge Screen-->
+	<div class="screen start">
+		<h1 class="title">SELECT A Country </h1>
+		<div class="start" id="start">
+		
+		</div>
+		<p class="footer">
+			<button data-screen="menu">BACK TO MENU</button>
+		</p>
+	</div>
+
+	<div class="screen credits">
+		<h1 class="title">CREDITS</h1>
+		<p>
+			Meeeeeee
+		</p>
+		<p class="footer">
+			<button data-screen="menu">BACK TO MENU</button>
+		</p>
+	</div>
+	<!--Misc Script imports-->
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	</script>
+	<!--Main Script import-->
+	<script src="js/main.js"></script>
+</body>
+
+</html>

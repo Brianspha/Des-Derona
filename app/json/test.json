@@ -1,0 +1,17 @@
+{
+    "name": "",
+    "children": [{
+        "name": "",
+        "children": [{
+                "name": "Basic Materials",
+                "type": "secteur",
+                "children": [
+                    { "name": "Abcde", "note": 5.5, "size": 50300, "type": "entreprise" },
+                    { "name": "fghi", "note": 2.2, "size": 222327, "type": "entreprise" },
+                    { "name": "jklmn", "note": 4, "size": 25909, "type": "entreprise" }
+                ]
+            }
+
+        ]
+    }]
+}

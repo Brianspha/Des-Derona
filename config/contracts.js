@@ -29,7 +29,7 @@ module.exports = {
         // Using filteredFields lets you customize which field you want to filter out of the contract file (requires minimalContractSize: true)
         // minimalContractSize: false,
         // filteredFields: [],
-        strategy: 'explicit',
+        strategy: 'implicit',
         deploy: {
             ERC20: {
                 args: [
@@ -38,6 +38,9 @@ module.exports = {
                     18,
                     new bigNumber(20000000000000000000000000000).toFixed()
                 ]
+            },
+            "DesDarona": {
+                args: []
             }
         }
     },

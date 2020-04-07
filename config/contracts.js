@@ -41,6 +41,12 @@ module.exports = {
             },
             "DesDarona": {
                 args: []
+            },
+            CTokenManager: {
+                args: []
+            },
+            Sablier: {
+                args: ['$CTokenManager']
             }
         }
     },

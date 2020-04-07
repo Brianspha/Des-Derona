@@ -1,4 +1,5 @@
-pragma solidity 0.5.11;
+pragma solidity >= 0.5 .10;
+
 
 import "./shared-contracts/interfaces/ICERC20.sol";
 import "./shared-contracts/lifecycle/OwnableWithoutRenounce.sol";

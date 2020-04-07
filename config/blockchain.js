@@ -1,15 +1,19 @@
 require("dotenv").config({
-  path: "config/vars.env",
+  path: "config/testnet/vars.env",
   encoding: "utf8"
 })
+const bigNumber = require('bignumber.js')
+console.log('new bigNumber(20000000000000000000000000000).toFixed()', new bigNumber(20000000000000000000000000000).toFixed())
+
+console.log('process.env.MNEUMONIC: ', process.env.MNEUMONIC)
 // This file contains only the basic configuration you need to run Embark's node
 // For additional configurations, see: https://embark.status.im/docs/blockchain_configuration.html
 module.exports = {
   // default applies to all environments
-  default: {
+  /*default: {
     enabled: true,
     client: "geth" // Can be geth or parity (default:geth)
-  },
+  },*/
 
   development: {
     clientConfig: {
@@ -21,13 +25,11 @@ module.exports = {
     // Accounts to use as node accounts
     // The order here corresponds to the order of `web3.eth.getAccounts`, so the first one is the `defaultAccount`
     // For more account configurations, see: https://embark.status.im/docs/blockchain_accounts_configuration.html
-    accounts: [
-      {
-        nodeAccounts: true, // Accounts use for the node
-        numAddresses: "1", // Number of addresses/accounts (defaults to 1)
-        password: "config/development/password" // Password file for the accounts
-      }
-    ],
+    accounts: [{
+      nodeAccounts: true, // Accounts use for the node
+      numAddresses: "1", // Number of addresses/accounts (defaults to 1)
+      password: "config/development/password" // Password file for the accounts
+    }],
     clientConfig: {
       datadir: ".embark/privatenet/datadir", // Data directory for the databases and keystore
       miningMode: 'auto',
@@ -43,34 +45,32 @@ module.exports = {
   },
 
   infura: {
-    endpoint:  process.env.MAINNET, // Endpoint of an node to connect to. Can be on localhost or on the internet
-    accounts: [
-      {
-        mnemonic: process.env.MNEUMONIC
-      }
-    ]
+    endpoint: process.env.ROPSTEN, // Endpoint of an node to connect to. Can be on localhost or on the internet
+    accounts: [{
+      mnemonic: process.env.MNEUMONIC,
+      hdpath: "m/44'/60'/0'/0/",
+      numAddresses: "1",
+
+    }]
   },
 
   testnet: {
     networkType: "testnet", // Can be: testnet(ropsten), rinkeby, livenet or custom, in which case, it will use the specified networkId
     syncMode: "light",
-    accounts: [
-      {
-        nodeAccounts: true,
-        password: "config/testnet/password"
-      }
-    ]
+    networkId: 3,
+    accounts: [{
+      mnemonic: process.env.MNEUMONIC,
+      hdpath: "m/44'/60'/0'/0/"
+    }]
   },
 
   livenet: {
     networkType: "livenet",
     syncMode: "light",
-    accounts: [
-      {
-        nodeAccounts: true,
-        password: "config/livenet/password"
-      }
-    ]
+    accounts: [{
+      nodeAccounts: true,
+      password: "config/livenet/password"
+    }]
   }
 
   // you can name an environment with specific settings and then specify with

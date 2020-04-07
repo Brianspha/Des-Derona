@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@openzeppelin/contracts": "^2.5.0",
+    "@openzeppelin/contracts-ethereum-package": "^2.5.0",
     "@openzeppelin/upgrades": "^2.8.0",
     "@portis/web3": "^2.0.0-beta.54",
     "axios": "^0.19.2",
@@ -22,6 +23,7 @@
     "countup.js": "^2.0.4",
     "d3": "^5.15.1",
     "dayjs": "^1.8.23",
+    "dot-env": "0.0.1",
     "dotenv": "^8.2.0",
     "embark-geth": "^5.2.3",
     "embark-remix": "0.0.2",
@@ -31,6 +33,7 @@
     "sweetalert2": "^9.10.9",
     "three": "^0.115.0",
     "three-gltf-loader": "^1.111.0",
-    "web3": "^1.2.6"
+    "web3": "^1.2.6",
+    "web3-utils": "^1.2.6"
   }
 }

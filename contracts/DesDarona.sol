@@ -1,4 +1,4 @@
-pragma solidity >=0.5.0;
+pragma solidity >= 0.5 .0;
 /**@dev contract definition */
 
 contract DesDarona {
@@ -11,13 +11,19 @@ contract DesDarona {
     constructor() public {
 
     }
-    function registerScore(uint256 score) public returns(bool){
-        require(msg.sender != address(0),"Invalid sender address");
-        playerScores[msg.sender]=score;
+
+    function registerScore(uint256 score) public returns(bool) {
+        require(msg.sender != address(0), "Invalid sender address");
+        playerScores[msg.sender] = score;
         return true;
     }
-    function getPlayerIds() public view returns(address [] memory){
 
+    function getPlayerIds() public view returns(address[] memory) {
+        return playerIds;
+    }
+
+    function getPlayerScore(address player) public view returns(uint256 score) {
+        return playerScores[player];
     }
 
 }

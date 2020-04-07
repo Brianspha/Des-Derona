@@ -22,15 +22,5 @@
             "optimize": true,
             "optimize-runs": 1000
         }
-    },
-    "plugins": {
-        "embark-remix": {
-            "readOnly": false,
-            "remixIde": {
-                "protocol": "http",
-                "host": "localhost",
-                "port": 8088
-            }
-        }
     }
 }

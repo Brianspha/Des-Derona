@@ -25,9 +25,10 @@
     "dayjs": "^1.8.23",
     "dot-env": "0.0.1",
     "dotenv": "^8.2.0",
-    "embark-geth": "^5.2.3",
+    "embark-geth": "^5.1.0",
     "embark-remix": "0.0.2",
     "globe.gl": "^2.8.6",
+    "jquery": "^3.4.1",
     "js-loading-overlay": "^1.0.4",
     "request": "^2.88.2",
     "sweetalert2": "^9.10.9",
@@ -35,5 +36,6 @@
     "three-gltf-loader": "^1.111.0",
     "web3": "^1.2.6",
     "web3-utils": "^1.2.6"
+
   }
 }

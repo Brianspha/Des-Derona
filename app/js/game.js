@@ -3,28 +3,36 @@ import * as THREE from 'three'
 import swal from 'sweetalert2'
 import GLTFLoader from 'three-gltf-loader';
 import Embark from '../../embarkArtifacts/embarkjs'
-import overlay from 'js-loading-overlay'
+import 'js-loading-overlay'
 import ronaToken from '../../embarkArtifacts/contracts/DesDarona'
 import sablier from '../../embarkArtifacts/contracts/Sablier'
 import erc20 from '../../embarkArtifacts/contracts/ERC20'
 import bigNumber from 'bignumber.js'
-Embark.onReady((error) => {
-    console.log('error loading page: ', error)
+import $ from 'jquery'
+$(document).ready(function () {
+    var ownerAddress = "0xA9539f2E5C3DD5f2a5Ecd8eCE5ff9b3AB5d1cA28"
     var selectedCountry = JSON.parse(localStorage.getItem('selectedCountry'))
     var userAddress = localStorage.getItem('userAddress');
-    console.log('selectedCountry: ', selectedCountry, ' userAddress: ',userAddress)
+    console.log('selectedCountry: ', selectedCountry, ' userAddress: ', userAddress)
+    selectedCountry.colors = selectedCountry.colors.map((color) => {
+        if (color === '0xfff') {
+            color = "#" + ((1 << 24) * Math.random() | 0).toString(16), "#" + ((1 << 24) * Math.random() | 0).toString(16), "#" + ((1 << 24) * Math.random() | 0).toString(16), "#" + ((1 << 24) * Math.random() | 0).toString(16), "#" + ((1 << 24) * Math.random() | 0).toString(16)
+        }
+        color = color.replace('0x', '#')
+        return color
+    })
     ///////////////
 
     // GAME VARIABLES
-    var game,endTime;
+    var game, endTime;
     var deltaTime = 0;
     var newTime = new Date().getTime();
     var oldTime = new Date().getTime();
-    var starTime = new Date().getTime();
+    let starTime = new Date().getTime();
     var enemiesPool = [];
     var seaEnemiesPool = []
     var particlesPool = [];
-    var playerParticlesPool=[]
+    var playerParticlesPool = []
     var countryColors = JSON.parse(localStorage.getItem("countryCodes"))
 
     function resetGame() {
@@ -89,7 +97,6 @@ Embark.onReady((error) => {
             status: "playing",
             levelVaccine: 0,
         };
-        fieldLevel.innerHTML = Math.floor(game.level);
     }
 
     //THREEJS RELATED VARIABLES
@@ -104,20 +111,20 @@ Embark.onReady((error) => {
     // Smart Contracts functions
 
     function determineLevel() {
-        var deaths = selectedCountry.data.deaths
-        console.log('deaths >0 && deaths <100', deaths > 0 && deaths < 100)
-        console.log('deaths >=100 && deaths <=5000', deaths >= 100 && deaths <= 5000)
-        console.log('deaths >=5000', deaths >= 5000)
-        if (deaths > 0 && deaths < 100) {
+        var cases = selectedCountry.data.cases
+        console.log('cases >0 && cases <100', cases > 0 && cases < 100)
+        console.log('cases >=100 && cases <=5000', cases >= 100 && cases <= 5000)
+        console.log('cases >=5000', cases >= 5000)
+        if (cases > 0 && cases < 100) {
             game.levelVaccine = 3
             game.distanceForSpeedUpdate = 8000
             game.distanceForLevelUpdate = 8000
         }
-        if (deaths >= 100 && deaths <= 5000) {
+        if (cases >= 100 && cases <= 5000) {
             game.levelVaccine = 3
             game.distanceForSpeedUpdate = 8000
             game.distanceForLevelUpdate = 8000
-        } else if (deaths >= 5000) {
+        } else if (cases >= 5000) {
             game.levelVaccine = 9
             game.distanceForSpeedUpdate = 3000
             game.distanceForLevelUpdate = 3000
@@ -150,7 +157,7 @@ Embark.onReady((error) => {
             nearPlane,
             farPlane
         );
-        scene.fog = new THREE.Fog(selectedCountry.colors[Math.round(Math.random() * selectedCountry.colors.length - 1)].replace('#', '0x'), 100, 950);
+        scene.fog = new THREE.Fog(selectedCountry.colors[Math.round(Math.random() * selectedCountry.colors.length - 1)], 100, 950);
         camera.position.x = 0;
         camera.position.z = 200;
         camera.position.y = game.collectorDefaultHeight;
@@ -173,7 +180,7 @@ Embark.onReady((error) => {
         controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.minPolarAngle = -Math.PI / 2;
         controls.maxPolarAngle = Math.PI ;
-
+    
         //controls.noZoom = true;
         //controls.noPan = true;
         //*/
@@ -308,7 +315,7 @@ Embark.onReady((error) => {
             color: "#48bf91",
             transparent: true,
             opacity: 1,
-            shading: THREE.FlatShading,
+            flatShading: true,
 
         });
 
@@ -390,7 +397,7 @@ Embark.onReady((error) => {
             color: selectedCountry.colors[Math.round(Math.random() * selectedCountry.colors.length - 1)],
             shininess: 0,
             specular: 0xffffff,
-            shading: THREE.FlatShading
+            flatShading: true
         });
         mesh = new THREE.Mesh(geom, mat);
         mesh.castShadow = true;
@@ -406,7 +413,7 @@ Embark.onReady((error) => {
             color: selectedCountry.colors[Math.round(Math.random() * selectedCountry.colors.length - 1)],
             shininess: 0,
             specular: 0xffffff,
-            shading: THREE.FlatShading
+            flatShading: true
         });
         mesh = new THREE.Mesh(geom, mat);
         mesh.castShadow = true;
@@ -552,7 +559,7 @@ Embark.onReady((error) => {
             color: "#00ff00",
             shininess: 0,
             specular: 0xffffff,
-            shading: THREE.FlatShading
+            flatShading: true
         });
         this.mesh = new THREE.Mesh(geom, mat);
     }
@@ -611,14 +618,14 @@ Embark.onReady((error) => {
             particle.explode(pos, color, scale);
         }
     }
-  
+
     var Coin = function () {
         var geom = new THREE.TetrahedronGeometry(5, 0);
         var mat = new THREE.MeshPhongMaterial({
             color: selectedCountry.colors[Math.round(Math.random() * selectedCountry.colors.length - 1)],
             shininess: 0,
             specular: 0xffffff,
-            shading: THREE.FlatShading
+            flatShading: true
         });
         this.mesh = new THREE.Mesh(geom, mat);
         this.mesh.castShadow = true;
@@ -637,7 +644,6 @@ Embark.onReady((error) => {
     }
 
     CoinsHolder.prototype.spawnCoins = function () {
-
         var nCoins = 1 + Math.floor(Math.random() * 10);
         var d = game.seaRadius + game.collectorDefaultHeight + (-1 + Math.random() * 2) * (game.collectorAmpHeight - 20);
         var amplitude = 10 + Math.round(Math.random() * 10);
@@ -647,6 +653,17 @@ Embark.onReady((error) => {
                 coin = this.coinsPool.pop();
             } else {
                 coin = new Coin();
+                var toSpawnEnemy = [true, false]
+                var spawn = toSpawnEnemy[Math.round(Math.random() * toSpawnEnemy.length)]
+                if (spawn) {
+                    var enemey = new Enemy()
+                    enemey.angle = -(i * 0.02);
+                    enemey.distance = d + Math.cos(i * .5) * amplitude;
+                    enemey.position.y = -game.seaRadius + Math.sin(enemey.angle) * enemey.distance;
+                    enemey.position.x = Math.cos(enemey.angle) * enemey.distance;
+                    this.mesh.add(enemey);
+                    this.coinsInUse.push(enemey);
+                }
             }
             this.mesh.add(coin.mesh);
             this.coinsInUse.push(coin);
@@ -663,12 +680,11 @@ Embark.onReady((error) => {
             if (coin.exploding) continue;
             coin.angle += game.speed * deltaTime * game.coinsSpeed;
             if (coin.angle > Math.PI * 2) coin.angle -= Math.PI * 2;
+            if(coin.mesh){
             coin.mesh.position.y = -game.seaRadius + Math.sin(coin.angle) * coin.distance;
             coin.mesh.position.x = Math.cos(coin.angle) * coin.distance;
             coin.mesh.rotation.z += Math.random() * .1;
             coin.mesh.rotation.y += Math.random() * .1;
-
-            //var globalCoinPosition =  coin.mesh.localToWorld(new THREE.Vector3());
             var diffPos = collector.position.clone().sub(coin.mesh.position.clone());
             var d = diffPos.length();
             if (d < game.coinDistanceTolerance) {
@@ -683,6 +699,28 @@ Embark.onReady((error) => {
                 this.mesh.remove(coin.mesh);
                 i--;
             }
+            }
+            else{
+               coin.position.y = -game.seaRadius + Math.sin(coin.angle) * coin.distance;
+            coin.position.x = Math.cos(coin.angle) * coin.distance;
+            coin.rotation.z += Math.random() * .1;
+            coin.rotation.y += Math.random() * .1;
+            var diffPos = collector.position.clone().sub(coin.position.clone());
+            var d = diffPos.length();
+            if (d < game.coinDistanceTolerance) {
+                this.coinsPool.unshift(this.coinsInUse.splice(i, 1)[0]);
+                this.mesh.remove(coin);
+                particlesHolder.spawnParticles(coin.position.clone(), 5, 0x009999, .8);
+                addEnergy();
+                i--;
+            } else
+            if (coin.angle > Math.PI) {
+                this.coinsPool.unshift(this.coinsInUse.splice(i, 1)[0]);
+                this.mesh.remove(coin);
+                i--;
+            }
+            }
+            //var globalCoinPosition =  coin.mesh.localToWorld(new THREE.Vector3());
         }
     }
 
@@ -695,10 +733,10 @@ Embark.onReady((error) => {
             // var tempBucket = await Promise.resolve(loadModel())
             var geom = new THREE.TetrahedronGeometry(8, 2);
             var mat = new THREE.MeshPhongMaterial({
-                color: 'white',
+                color: '0xFFFFFF',
                 shininess: 0,
                 specular: 0xffffff,
-                shading: THREE.FlatShading
+                flatShading: true
             });
             collector = new THREE.Mesh(geom, mat);
             collector.castShadow = true;
@@ -756,7 +794,7 @@ Embark.onReady((error) => {
 
     }
 
-    
+
 
     function loop() {
 
@@ -807,7 +845,7 @@ Embark.onReady((error) => {
             collector.rotation.x += 0.0003 * deltaTime;
             game.collectorFallSpeed *= 1.05;
             collector.position.y -= game.collectorFallSpeed * deltaTime;
-        } 
+        }
 
 
         sea.mesh.rotation.y += game.speed * deltaTime; //*game.seaRotationSpeed;
@@ -851,46 +889,113 @@ Embark.onReady((error) => {
 
         if (game.energy < 1) {
             game.status = "gameover";
-            //startTokenStream()
+            showGameOver()
         }
     }
-    function startTokenStream(){
-        overlay.show({'spinnerIcon': 'ball-running-dots'});
+
+    function showGameOver() {
+        swal.fire({
+            title: 'Game Over!!',
+            text: "Restart or Cash Out",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Restart',
+            confirmButtonText: 'Cash Out'
+        }).then((result) => {
+            if (result.value) {
+                startTokenStream()
+            } else {
+                restart()
+            }
+        })
+    }
+
+    function restart() {
+        location.href = "game.html"
+    }
+
+    function startTokenStream() {
+        JsLoadingOverlay.show({
+            'spinnerIcon': 'ball-running-dots'
+        });
         var perRound = new bigNumber(100000).multipliedBy(new bigNumber(10).pow(18)) //@dev this is known i.e. decimal places
         var amount = perRound.multipliedBy(game.level)
-        var timeDelta = new Date().getTime()-starTime
+        var tempStartTime = new Date(new Date().getTime() + 30 * 60000).getTime()
+        var timeDelta = new Date().getTime() - starTime
+        var endDate = tempStartTime + timeDelta;
+        amount = calculateDeposit(timeDelta, amount)
         amount = amount.toFixed()
-        console.log('user token payout: ',amount)
-        amount = calculateDeposit(timeDelta,amount)
-        var endDate = new Date().getTime() + timeDelta;
-        console.log('timeDelta: ',timeDelta, ' endDate: ',endDate)
+        console.log('user token payout: ', amount)
+
+        console.log('timeDelta: ', timeDelta, ' endDate: ', endDate)
+        console.log('sablier', sablier)
         sablier.methods.createStream(userAddress, amount, erc20.options.address,
-            starTime, endDate).send({
-                gas:8000000,
-                from:"0xAD5C6964b5836d67Aa8c02b6Dd56DFa385F9B992"
-            }).then((receipt,error)=>{
-                if(receipt){
-                    successWithFooter('Tokens have started streaming to your wallet please check your balance user the token balance on Etherscan',userAddress)
-                }
-                console.log('receipt: ',receipt)
-                console.log('error: ',error)
-                overlay.hide();
-            })
+            tempStartTime, endDate).send({
+            gas: 8000000,
+            from: ownerAddress
+        }).then((receipt, error) => {
+            if (receipt) {
+                successWithFooter('Token stream has been initiated, and will start in 30 minutes, please check your balance your Rona token balance on Etherscan', userAddress)
+            }
+            console.log('receipt: ', receipt)
+            console.log('error: ', error)
+            JsLoadingOverlay.hide();
+        }).catch((err) => {
+            error('Something went wrong please restart game and try again')
+            console.log('error starting token stream: ', err)
+            JsLoadingOverlay.hide();
+        })
     }
-    function successWithFooter(message,address){
+
+    function successWithFooter(message, address) {
         swal.fire({
             icon: 'success',
             title: 'Shmoney',
             text: message,
-            footer: `<a href=https://ropsten.etherscan.io/address/${address}>Why do I have this issue?</a>`
-          }) 
+            footer: `<a href=https://ropsten.etherscan.io/address/${address}>Click here</a>`,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Restart'
+        }).then((result) => {
+            if (result.value) {
+                restart()
+            } 
+        })
     }
+
+    function errorWithOptions(mesage) {
+        swal.fire({
+            title: 'Game Over!!',
+            text: mesage,
+            icon: 'error',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Restart'
+        }).then((result) => {
+            if (result.value) {
+                restart()
+            }
+        })
+    }
+
+    function error(message) {
+        swal.fire(
+            'Error',
+            message,
+            'error'
+        )
+    }
+
     function calculateDeposit(delta, deposit) {
         var diff = deposit.minus(deposit.minus(deposit.mod(delta)))
         deposit = new bigNumber(deposit).minus(diff)
-        console.log("deposit.toFixed(): ",deposit.toFixed())
+        console.log("deposit.toFixed(): ", deposit.toFixed())
         return deposit
     }
+
     function addEnergy() {
         game.energy += game.coinValue;
         game.energy = Math.min(game.energy, 100);
@@ -932,15 +1037,15 @@ Embark.onReady((error) => {
         particle.mesh.position.y = collector.position.y;
         particle.mesh.position.x = collector.position.x;
         particle.explode(collector.position, collector.color, .5);
-        particle.mesh.position.y = collector.position.y+Math.random();
-        particle.mesh.position.x = collector.position.x+Math.random();
+        particle.mesh.position.y = collector.position.y + Math.random();
+        particle.mesh.position.x = collector.position.x + Math.random();
         particle.explode(collector.position, collector.color, .5);
-        
+
     }
 
     function showReplay() {
         replayMessage.style.display = "block";
-        location.href="index.html"
+        location.href = "index.html"
     }
 
     function hideReplay() {
@@ -956,11 +1061,21 @@ Embark.onReady((error) => {
         return tv;
     }
 
-    var fieldDistance, energyBar, replayMessage, fieldLevel, levelCircle, vaccineCircle, fieldVaccine;
+    function createParticles() {
+        for (var i = 0; i < 10; i++) {
+            var particle = new Particle();
+            particlesPool.push(particle);
+        }
+        particlesHolder = new ParticlesHolder();
+        //ennemiesHolder.mesh.position.y = -game.seaRadius;
+        scene.add(particlesHolder.mesh)
+    }
+    let fieldDistance, energyBar, replayMessage, fieldLevel, levelCircle, vaccineCircle, fieldVaccine;
 
     function init(event) {
 
         // UI
+        resetGame();
 
         fieldDistance = document.getElementById("distValue");
         energyBar = document.getElementById("energyBar");
@@ -969,8 +1084,8 @@ Embark.onReady((error) => {
         fieldVaccine = document.getElementById("vaccineValue")
         levelCircle = document.getElementById("levelCircleStroke");
         vaccineCircle = document.getElementById("vaccineCircleStroke");
+        fieldLevel.innerHTML = Math.floor(game.level);
 
-        resetGame();
         createScene();
         determineLevel()
         createLights();
@@ -985,12 +1100,13 @@ Embark.onReady((error) => {
             document.addEventListener('touchmove', handleTouchMove, false);
             document.addEventListener('mouseup', handleMouseUp, false);
             document.addEventListener('touchend', handleTouchEnd, false);
-
             loop();
         })
-
     }
     init()
-    //window.addEventListener('load', init, false);
-})
+});
+
+
+//window.addEventListener('load', init, false);
+
 //var selectedCountry=JSON.parse(localStorage.getItem("selectedCountry"))

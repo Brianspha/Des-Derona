@@ -24,6 +24,6 @@ Once the transaction has been approved the token stream will only be initiated i
 Unfortunately embark is broken nad i tried reaching out and couldnt so i cant build the app
 ### Web Page
 
-[GitHubPages](https://brianspha.github.io/skyTube/) <br /><br />
-[SkyLink](https://siasky.net/AAC5YmBVrAUffINDXrty7fDc2Qznxks-zR-L_vcPwwDfXA)
+[GitHubPages]( https://brianspha.github.io/Des-Derona/) <br /><br />
+[SkyLink]( https://brianspha.github.io/Des-Derona/)
 

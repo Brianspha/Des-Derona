@@ -1,9 +1,9 @@
 module.exports = {
   // applies to all environments
-  default: {
+  /*default: {
     enabled: true,
     rpcHost: "localhost", // HTTP-RPC server listening interface (default: "localhost")
-    rpcPort: 8545, // HTTP-RPC server listening port (default: 8545)
+    rpcPort: 8546, // HTTP-RPC server listening port (default: 8545)
     rpcCorsDomain: { // Domains from which to accept cross origin requests (browser enforced). This can also be a comma separated list
       auto: true, // When "auto" is true, Embark will automatically set the cors to the address of the webserver
       additionalCors: [] // Additional CORS domains to add to the list. If "auto" is false, only those will be added
@@ -17,7 +17,7 @@ module.exports = {
     wsPort: 8546 // WS-RPC server listening port (default: 8546)
 
     
-  },
+  },*/
 
   // default environment, merges with the settings in default
   // assumed to be the intended environment by `embark run` and `embark blockchain`

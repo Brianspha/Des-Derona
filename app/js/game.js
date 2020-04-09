@@ -954,7 +954,6 @@ $(document).ready(function () {
             JsLoadingOverlay.hide();
         })
     }
-    }
 
     function successWithFooter(message, address) {
         swal.fire({

@@ -31,7 +31,9 @@ Once the transaction has been approved the token stream will only be initiated i
 ``embark simulator``
 
 ### Start serve
+### Important
 
+Please ensure you select an account eitheir than the default account when entering an eth address generally the accounts available for the simulator are available when it launches the default no of accounts is 10
 ``embark run --nodashboard``
 ### Access Web Page
 Unfortunately embark is broken nad i tried reaching out and couldnt so i cant build the app

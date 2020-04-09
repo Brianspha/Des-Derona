@@ -43,7 +43,7 @@ module.exports = {
   },
 
   infura: {
-    endpoint:  process.env.MAINNET, // Endpoint of an node to connect to. Can be on localhost or on the internet
+    endpoint:  process.env.ROPSTEN, // Endpoint of an node to connect to. Can be on localhost or on the internet
     accounts: [
       {
         mnemonic: process.env.MNEUMONIC

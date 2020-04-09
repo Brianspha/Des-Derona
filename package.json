@@ -6,6 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "plugins": {
+    "embark-ipfs": {},
+    "embark-swarm": {},
+    "embark-whisper-geth": {},
+    "embark-geth": {},
+    "embark-parity": {},
+    "embark-profiler": {},
+    "embark-graph": {}
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -35,6 +44,12 @@
     "three": "^0.115.0",
     "three-gltf-loader": "^1.111.0",
     "web3": "^1.2.6",
-    "web3-utils": "^1.2.6"
+    "web3-utils": "^1.2.6",
+    "embark-graph": "^5.2.3",
+    "embark-ipfs": "^5.2.3",
+    "embark-parity": "^5.2.3",
+    "embark-profiler": "^5.2.3",
+    "embark-swarm": "^5.2.3",
+    "embark-whisper-geth": "^5.2.3"
   }
 }

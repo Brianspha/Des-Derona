@@ -11,8 +11,8 @@ module.exports = {
         dappConnection: [
             "$EMBARK",
             "$WEB3", // uses pre existing web3 object if available (e.g in Mist)
-            "ws://localhost:8556",
-            "http://localhost:8556"
+            "ws://localhost:8546",
+            "http://localhost:8546"
         ],
 
         // Automatically call `ethereum.enable` if true.
@@ -71,17 +71,6 @@ module.exports = {
     },
     infura: {
         strategy: 'explicit',
-        deployment: {
-            host: process.env.ROPSTEN,
-            port: false,
-            protocol: 'https',
-            type: "rpc",
-            accounts: [{
-                mnemonic: process.env.MNEUMONIC,
-                addressIndex: "0", // Optional. The index to start getting the address
-                numAddresses: "10"
-            }]
-        },
         gas: "8000000",
         contracts: {
             ERC20: {

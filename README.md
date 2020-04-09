@@ -24,7 +24,7 @@ Once the transaction has been approved the token stream will only be initiated i
 ``npm install``
 
 ### Install embark
-``npm install embark@4.1.1 -g``
+``npm install embark -g``
 
 ### Run simulator
 

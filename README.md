@@ -24,7 +24,7 @@ Once the transaction has been approved the token stream will only be initiated i
 ``npm install``
 
 ### Install embark
-``npm install embark -g``
+``npm install embark@4.1.1 -g``
 
 ### Run simulator
 
@@ -34,6 +34,8 @@ Once the transaction has been approved the token stream will only be initiated i
 ### Important
 
 Please ensure you select an account eitheir than the default account when entering an eth address generally the accounts available for the simulator are available when it launches the default no of accounts is 10
+
+**If running on the testnets via the deployed please ensure that you have used the account or the sablier contract will reject the **
 ``embark run --nodashboard``
 ### Access Web Page
 Unfortunately embark is broken nad i tried reaching out and couldnt so i cant build the app

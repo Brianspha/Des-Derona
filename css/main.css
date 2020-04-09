@@ -1,0 +1,309 @@
+/*@dev Main styling start
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Bangers);
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Bangers', cursive;
+    background-color: white;
+    overflow: scroll;
+}
+
+a {
+    color: #4FA0DA;
+}
+
+button {
+    font-family: 'Bangers', cursive;
+    background: skyblue;
+    border: none;
+    padding: 15px 30px;
+    color: white;
+    cursor: pointer;
+    min-width: 250px;
+    font-size: 20px;
+    text-shadow: 0 -1px 0 #3C5B10;
+    -webkit-transition: background 0.3s ease-in-out;
+    -moz-transition: background 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out;
+}
+
+button:focus {
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+    outline: none;
+}
+
+button:hover,
+button:active {
+    background: gray;
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    color: black;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    -webkit-transition-property: opacity, transform;
+    -moz-transition-property: opacity, transform;
+    transition-property: opacity, transform;
+    -webkit-transform: translateY(15px);
+    -moz-transform: translateY(15px);
+    transform: translateY(15px);
+    text-align: center;
+}
+
+.screen.show {
+    opacity: 1;
+    z-index: 5;
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    transform: translateY(0px);
+}
+
+.title-menu {
+    font-size: 80px;
+    color: black;
+}
+
+
+/*
+Level Selection Screen
+ */
+
+.levels.screen .level-block,
+.challenges.screen .level-block {
+    display: inline-block;
+    width: 66px;
+    height: 66px;
+    background-color: transparent;
+    color: hsl(0, 0%, 60%);
+    font-size: 54px;
+}
+
+.levels.screen .level-block.enabled,
+.challenges.screen .level-block.enabled {
+    background-color: lightblue;
+    color: inherit;
+    text-shadow: 0 -1px 0px hsl(56, 70%, 25%);
+    cursor: pointer;
+}
+
+.levels.screen .level-block.enabled,
+.challenges.screen .level-block:hover {
+    background-color: gray;
+}
+
+.back-to-menu-button {
+    margin-top: 60px;
+}
+
+
+/*@dev Main styling end
+*/
+
+
+/*@dev card styling startbody {
+    background: #eceef1;
+    font-family: 'Slabo 27px', serif;
+    color: #333a45;
+}
+*/
+
+.top-info-container {
+    z-index: 1;
+    top: 20px;
+    position: absolute;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+.bottom-info-container {
+    z-index: 1;
+    bottom: 20px;
+    position: absolute;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+.title {
+    font-size: 35px;
+    color: #e6f1ff;
+}
+
+.title-desc {
+    margin-top: 5px;
+    color: #ccd6f6;
+    padding: 0 5px;
+}
+
+#infected {
+    color: goldenrod;
+}
+
+#deaths {
+    color: #ff4848;
+}
+
+#recovered {
+    color: #1ae021;
+}
+
+.card {
+    font-family: 'Space Mono', monospace;
+    transition: 0.3s;
+    background-color: black;
+    width: 190px;
+    border: 2px solid steelblue;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 2;
+}
+
+.container {
+    /* padding: 3px 16px; */
+    padding-top: 1px;
+    padding-bottom: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.card-img {
+    object-fit: contain;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-total-cases {
+    font-size: 11px;
+}
+
+.card-spacer {
+    height: 5px;
+}
+
+.bottom-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 11px;
+}
+
+.scene-tooltip {
+    z-index: 2;
+}
+
+
+/*@dev card styling end
+*/
+
+/*@dev Eth address input styling start*/
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: skyblue;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: black;
+  font-size: 16px;
+}
+.form .message a {
+  color: skyblue;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+
+/*@dev Eth address input styling end*/

@@ -69,27 +69,25 @@ module.exports = {
 
         }
     },
-    testnet: {
+    infura: {
+        strategy: 'explicit',
         deployment: {
             host: process.env.ROPSTEN,
             port: false,
             protocol: 'https',
             type: "rpc",
             accounts: [{
-              mnemonic: process.env.MNEUMONIC,
-              addressIndex: "0", // Optional. The index to start getting the address
-              numAddresses: "10"
+                mnemonic: process.env.MNEUMONIC,
+                addressIndex: "0", // Optional. The index to start getting the address
+                numAddresses: "10"
             }]
-          },
-        gas: "6500000",
-        deploy: {
+        },
+        gas: "8000000",
+        contracts: {
             ERC20: {
-                args: [
-                    "RonaToken",
-                    "RT",
-                    18,
-                    new bigNumber(20000000000000000000000000000).toFixed()
-                ]
+                address:"0xb220cd7d72a36ec5c4a5fe1fe4cc09a77676891f",
+                abiDefinition:[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"amount","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"sender","type":"address"},{"name":"recipient","type":"address"},{"name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"account","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"recipient","type":"address"},{"name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"owner","type":"address"},{"name":"spender","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"decimals","type":"uint8"},{"name":"initialsupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"}],
+                gasPrice: 300
             },
             "DesDarona": {
                 args: []
@@ -99,6 +97,7 @@ module.exports = {
             },
             "Sablier": {
                 deps: ['ERC20'],
+                gasPrice: 300,
                 address: '0xc04Ad234E01327b24a831e3718DBFcbE245904CC',
                 abiDefinition: [{
                     "constant": true,
@@ -860,12 +859,12 @@ module.exports = {
                     var deposit = new bigNumber(20000000000000000000000000000)
                     var diff = deposit.minus(deposit.minus(deposit.mod(delta)))
                     deposit = new bigNumber(deposit).minus(diff)
-                    deposit =deposit.toFixed()
-                    console.log('deposit: ',deposit)
-                   const receipt= await contracts.ERC20.methods.approve(contracts.Sablier.options.address, deposit).send({
+                    deposit = deposit.toFixed()
+                    console.log('deposit: ', deposit)
+                    const receipt = await contracts.ERC20.methods.approve(contracts.Sablier.options.address, deposit).send({
                         gas: 8000000
                     })
-                    console.log('approved token...\nreceipt: ',receipt)
+                    console.log('approved token...\nreceipt: ', receipt)
 
                 }
             }

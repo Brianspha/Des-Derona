@@ -10,6 +10,12 @@ import $ from 'jquery'
 import {erc20Interface,sablierInterface} from '../abi/'
 import Web3 from 'web3'
 $(document).ready(function () {
+    window.ethereum.on('accountsChanged', function (accounts) {
+        window.location = "main.html"
+      })
+      window.ethereum.on('networkChanged', function (netId) {
+        window.location = "main.html"
+      })
    // let web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/1ff323953d2a4cd1ac1cea6ab59a04f5"));
    // console.log('web3: ',web3)
    // let sablier = new web3.eth.Contract(sablierInterface, '0xc04Ad234E01327b24a831e3718DBFcbE245904CC', {
@@ -669,6 +675,7 @@ $(document).ready(function () {
                     enemey.position.x = Math.cos(enemey.angle) * enemey.distance;
                     this.mesh.add(enemey);
                     this.coinsInUse.push(enemey);
+                    continue
                 }
             }
             this.mesh.add(coin.mesh);
@@ -919,7 +926,7 @@ $(document).ready(function () {
     }
 
     function restart() {
-        location.href = "game.html"
+        location.href = "main.html"
     }
 
     function startTokenStream() {

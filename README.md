@@ -1,6 +1,6 @@
 ### Des-Darona (rona taken from corona and des-da adapted from des-damona from Othello) 
 
-This is a POC covid 19 blockchain based game which experiments with the notion of streamable tokens through the use of the sablier protocol the aim of the game is to collect as many vaccines to recover a countries infected count the longer you last through collecting the vaccines the longer the stream will last after the player has died
+This is a POC covid 19 blockchain based game which experiments with the notion of streamable tokens through the use of the sablier protocol the aim of the game is to collect as many vaccines to recover a countries infected count the longer you last through collecting the vaccines the longer the stream will last after the player has died **The game tries to theme its self according to the colors of the the selected country **
 
 ### Break down of game (Screenshots)
 1. ![Usage](/screenshots/1.png)

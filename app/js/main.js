@@ -5,6 +5,8 @@ import countryFlagColors from "country-flag-colors";
 import countryJs from "country-js";
 import CirclePack from 'circlepack-chart';
 import swal from 'sweetalert2'
+import $ from 'jquery'
+
 import {
     scaleOrdinal,
     schemePaired,

@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 /dist
-/config
+/config/testnet
 embarkArtifacts
 .embark
 # local env files

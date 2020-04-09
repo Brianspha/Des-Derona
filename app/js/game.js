@@ -2,14 +2,21 @@
 import * as THREE from 'three'
 import swal from 'sweetalert2'
 import GLTFLoader from 'three-gltf-loader';
-import Embark from '../../embarkArtifacts/embarkjs'
 import 'js-loading-overlay'
-import ronaToken from '../../embarkArtifacts/contracts/DesDarona'
-import sablier from '../../embarkArtifacts/contracts/Sablier'
 import erc20 from '../../embarkArtifacts/contracts/ERC20'
 import bigNumber from 'bignumber.js'
 import $ from 'jquery'
+import {erc20Interface,sablierInterface} from '../abi/'
+import web3 from 'web3'
 $(document).ready(function () {
+    let sablier = new web3.eth.Contract(sablierInterface, '0xc04Ad234E01327b24a831e3718DBFcbE245904CC', {
+        from: '0xA9539f2E5C3DD5f2a5Ecd8eCE5ff9b3AB5d1cA28', // default from address
+        gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
+    });
+    let erc20 = new web3.eth.Contract(erc20Interface, '0xb220cd7d72a36ec5c4a5fe1fe4cc09a77676891f', {
+        from: '0xA9539f2E5C3DD5f2a5Ecd8eCE5ff9b3AB5d1cA28', // default from address
+        gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
+    });
     var ownerAddress = "0xA9539f2E5C3DD5f2a5Ecd8eCE5ff9b3AB5d1cA28"
     var selectedCountry = JSON.parse(localStorage.getItem('selectedCountry'))
     var userAddress = localStorage.getItem('userAddress');
@@ -931,7 +938,7 @@ $(document).ready(function () {
 
         console.log('timeDelta: ', timeDelta, ' endDate: ', endDate)
         console.log('sablier', sablier)
-        sablier.methods.createStream(userAddress, amount, erc20.options.address,
+        sablier.methods.createStream(userAddress, amount, "0xb220cd7d72a36ec5c4a5fe1fe4cc09a77676891f",
             tempStartTime, endDate).send({
             gas: 8000000,
             from: ownerAddress

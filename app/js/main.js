@@ -27,7 +27,6 @@ import {
     GEOJSON_URL,
     CASES_API,
 } from '../constants/';
-import Embark from '../../embarkArtifacts/embarkjs'
 import web3Utils from 'web3-utils'
 console.log('scaleOrdinal: ', scaleOrdinal)
 console.log('schemePaired: ', schemePaired)

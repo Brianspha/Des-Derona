@@ -2,8 +2,6 @@
     "contracts": ["contracts/**"],
     "app": {
         "js/main.js": ["app/js/main.js"],
-        "js/TweenMax.min.js": ["app/js/TweenMax.min.js"],
-        "js/three.min.js": ["app/js/three.min.js"],
         "js/game.js": ["app/js/game.js"],
         "index.html": "app/index.html",
         "game.html": "app/game.html",

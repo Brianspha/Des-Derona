@@ -19,7 +19,20 @@ Once the user has died they will be prompted to restart or start the token strea
 9. ![Usage](/screenshots/9.png)
 Once the transaction has been approved the token stream will only be initiated in 30 minutes so the user will have to copy the tokens address into their wallet and watch the schmoney streaming in XD
 
+### Run locally
 
+``npm install``
+
+### Install embark
+``npm install embark -g``
+
+### Run simulator
+
+``embark simulator``
+
+### Start serve
+
+``embark run --nodashboard``
 ### Access Web Page
 Unfortunately embark is broken nad i tried reaching out and couldnt so i cant build the app
 ### Web Page

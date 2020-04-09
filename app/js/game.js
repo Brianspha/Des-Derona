@@ -7,13 +7,11 @@ import erc20 from '../../embarkArtifacts/contracts/ERC20'
 import bigNumber from 'bignumber.js'
 import $ from 'jquery'
 import {erc20Interface,sablierInterface} from '../abi/'
-import web3 from 'web3'
+import Web3 from 'web3'
 $(document).ready(function () {
+    let web3 = new Web3(new Web3.providers.HttpProvider("ropsten.infura.io/v3/47fbe32af4e4448888dc594e68c40c1d"));
+    console.log('web3: ',web3)
     let sablier = new web3.eth.Contract(sablierInterface, '0xc04Ad234E01327b24a831e3718DBFcbE245904CC', {
-        from: '0xA9539f2E5C3DD5f2a5Ecd8eCE5ff9b3AB5d1cA28', // default from address
-        gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
-    });
-    let erc20 = new web3.eth.Contract(erc20Interface, '0xb220cd7d72a36ec5c4a5fe1fe4cc09a77676891f', {
         from: '0xA9539f2E5C3DD5f2a5Ecd8eCE5ff9b3AB5d1cA28', // default from address
         gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
     });

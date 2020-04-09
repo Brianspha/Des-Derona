@@ -1,5 +1,5 @@
 require("dotenv").config({
-  path: "config/vars.env",
+  path: "config/testnet/vars.env",
   encoding: "utf8"
 })
 // This file contains only the basic configuration you need to run Embark's node
@@ -61,7 +61,7 @@ module.exports = {
       }
     ]
   },
-  
+
 
   livenet: {
     networkType: "livenet",

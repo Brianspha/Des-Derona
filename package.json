@@ -6,15 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "plugins": {
-    "embark-ipfs": {},
-    "embark-swarm": {},
-    "embark-whisper-geth": {},
-    "embark-geth": {},
-    "embark-parity": {},
-    "embark-profiler": {},
-    "embark-graph": {}
-  },
+  
   "author": "",
   "license": "ISC",
   "dependencies": {

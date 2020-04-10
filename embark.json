@@ -22,5 +22,14 @@
             "optimize": true,
             "optimize-runs": 1000
         }
-    }
+    },
+    "plugins": {
+    "embark-ipfs": {},
+    "embark-swarm": {},
+    "embark-whisper-geth": {},
+    "embark-geth": {},
+    "embark-parity": {},
+    "embark-profiler": {},
+    "embark-graph": {}
+  }
 }

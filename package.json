@@ -33,7 +33,7 @@
     "js-loading-overlay": "^1.0.4",
     "request": "^2.88.2",
     "sweetalert2": "^9.10.9",
-    "three": "^0.115.0",
+    "three": "^0.137.0",
     "three-gltf-loader": "^1.111.0",
     "web3": "^1.2.6",
     "web3-utils": "^1.2.6",
